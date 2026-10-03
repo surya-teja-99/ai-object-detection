@@ -1,4 +1,4 @@
-# VisionScope
+# ai-object-detection
 
 Real-time AI object detection in your browser. Point your camera at something —
 VisionScope draws bounding boxes and labels over the live feed, entirely

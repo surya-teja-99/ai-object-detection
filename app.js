@@ -222,7 +222,7 @@ els.snapshot.addEventListener("click", () => {
   ctx.drawImage(els.canvas, 0, 0, c.width, c.height);
   const a = document.createElement("a");
   a.href = c.toDataURL("image/png");
-  a.download = `visionscope-${Date.now()}.png`;
+  a.download = `ai-object-detection-${Date.now()}.png`;
   a.click();
 });
 
