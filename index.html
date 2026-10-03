@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VisionScope — Real-time object detection in your browser</title>
+  <meta name="description" content="VisionScope runs on-device AI object detection on your camera feed, entirely in the browser. No uploads, no server." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">◉</span>
+      <h1>VisionScope</h1>
+    </div>
+    <p class="tagline">Real-time object detection, running 100% in your browser</p>
+  </header>
+
+  <main class="layout">
+    <section class="stage-card">
+      <div class="stage">
+        <video id="video" playsinline muted autoplay></video>
+        <canvas id="overlay"></canvas>
+        <div id="banner" class="banner hidden" role="status"></div>
+      </div>
+      <div class="stage-footer">
+        <span id="fpsMeter" class="meter">— fps</span>
+        <span id="modelStatus" class="meter">loading model…</span>
+      </div>
+    </section>
+
+    <aside class="panel">
+      <h2>Controls</h2>
+
+      <label class="switch-row">
+        <span>AI detection</span>
+        <button id="aiToggle" class="switch on" role="switch" aria-checked="true" aria-label="Toggle AI detection">
+          <span class="knob"></span>
+        </button>
+      </label>
+
+      <label class="slider-row" for="fps">
+        <span>Detection rate <output id="fpsVal" for="fps">8 fps</output></span>
+        <input id="fps" type="range" min="1" max="20" step="1" value="8" />
+      </label>
+
+      <label class="slider-row" for="confidence">
+        <span>Confidence threshold <output id="confVal" for="confidence">50%</output></span>
+        <input id="confidence" type="range" min="10" max="90" step="5" value="50" />
+      </label>
+
+      <div class="btn-row">
+        <button id="flipCam" class="btn" type="button">⇄ Flip camera</button>
+        <button id="snapshot" class="btn" type="button">⤓ Snapshot</button>
+      </div>
+
+      <h2>Detections <span id="detCount" class="count">0</span></h2>
+      <ul id="detList" class="det-list">
+        <li class="empty">Nothing detected yet — point your camera at something.</li>
+      </ul>
+
+      <p class="hint">
+        Camera access needs <code>localhost</code> or HTTPS. All inference happens
+        on your device; no video ever leaves the browser.
+      </p>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <p>Powered by TensorFlow.js + COCO-SSD (80 everyday object classes) · MIT-licensed libraries, on-device inference</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

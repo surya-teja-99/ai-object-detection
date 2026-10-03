@@ -1,0 +1,199 @@
+:root {
+  --bg: #0e1116;
+  --card: #171c24;
+  --line: #262d38;
+  --text: #e8ecf1;
+  --muted: #9aa4b2;
+  --accent: #4cc38a;
+  --accent-dim: rgba(76, 195, 138, 0.16);
+  --warn: #e5b567;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  padding: 22px 28px 8px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { color: var(--accent); font-size: 26px; }
+.brand h1 { margin: 0; font-size: 26px; letter-spacing: 0.4px; }
+.tagline { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+
+.layout {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 28px 28px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.stage-card, .panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.stage {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 4 / 3;
+}
+
+.stage video, .stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner {
+  position: absolute;
+  inset: auto 12px 12px 12px;
+  background: rgba(20, 24, 31, 0.92);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 14px;
+  color: var(--warn);
+}
+.banner.hidden { display: none; }
+
+.stage-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+.meter {
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.panel h2 {
+  font-size: 15px;
+  margin: 18px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.panel h2:first-child { margin-top: 0; }
+
+.count {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 12px;
+  vertical-align: 2px;
+}
+
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 15px;
+}
+
+.switch {
+  width: 52px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #2a313d;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+  padding: 0;
+}
+.switch .knob {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #8b95a5;
+  transition: left 0.2s, background 0.2s;
+}
+.switch.on { background: var(--accent-dim); border-color: var(--accent); }
+.switch.on .knob { left: 26px; background: var(--accent); }
+
+.slider-row { display: block; padding: 10px 0; font-size: 15px; }
+.slider-row span { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.slider-row output { color: var(--accent); font-variant-numeric: tabular-nums; }
+.slider-row input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+.btn-row { display: flex; gap: 10px; margin-top: 12px; }
+.btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #20262f;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); }
+
+.det-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 260px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.det-list li {
+  background: #20262f;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+.det-list li.empty { color: var(--muted); }
+.det-item { display: flex; justify-content: space-between; align-items: center; }
+.det-item .conf { color: var(--accent); font-variant-numeric: tabular-nums; }
+.bar { height: 4px; background: #2a313d; border-radius: 2px; margin-top: 7px; }
+.bar i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+
+.hint { font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 16px; }
+.hint code { color: var(--text); }
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12.5px;
+  padding: 16px;
+  border-top: 1px solid var(--line);
+}
